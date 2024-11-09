@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5ox76g2j1af4"]
+
+[ext_resource type="Texture2D" uid="uid://bo1iuiu8gx148" path="res://foe/foe.png" id="1_eka4u"]
+[ext_resource type="Script" path="res://foe/foe.gd" id="2_6r5mc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uifge"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_eka4u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vefud"]
+radius = 25.0799
+
+[node name="Foe" type="Area2D"]
+position = Vector2(28, 28)
+script = ExtResource("2_6r5mc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -1)
+sprite_frames = SubResource("SpriteFrames_uifge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 1)
+shape = SubResource("CircleShape2D_vefud")
