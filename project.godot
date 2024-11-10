@@ -31,3 +31,4 @@ punch={
 [rendering]
 
 renderer/rendering_method="mobile"
+viewport/transparent_background=true

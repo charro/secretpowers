@@ -1,5 +1,6 @@
-extends Control
+extends Timer
 
+@export var max_wait_time: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,11 +11,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func set_points(points: int):
-	$Points.text = str(points)
-	
-func set_life(life: int):
-	$LifeBar.value = life
 
-func show_dead():
-	$GameOver.visible = true
+func _on_timeout() -> void:
+	wait_time = randf_range(0, max_wait_time)
