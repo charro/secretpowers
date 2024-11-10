@@ -18,7 +18,7 @@ animations = [{
 radius = 25.0799
 
 [node name="Foe" type="Area2D"]
-position = Vector2(28, 28)
+position = Vector2(604, 289)
 script = ExtResource("2_6r5mc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
