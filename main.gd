@@ -34,3 +34,4 @@ func _on_enemy_survived() -> void:
 func _check_if_dead():
 	if life < 1:
 		$UI.show_dead()
+		$FoeSpawnTimer.stop()
