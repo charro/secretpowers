@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5ox76g2j1af4"]
+[gd_scene load_steps=7 format=3 uid="uid://c5ox76g2j1af4"]
 
 [ext_resource type="Script" path="res://foe/foe.gd" id="2_6r5mc"]
 [ext_resource type="SpriteFrames" uid="uid://c10e2ykb188ht" path="res://foe/sprite_frames/foe.tres" id="2_dc8dr"]
@@ -6,8 +6,45 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_vefud"]
 radius = 25.0799
 
+[sub_resource type="Animation" id="Animation_761cg"]
+resource_name = "attacked"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.539445, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_tb4b4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6e7lk"]
+_data = {
+"RESET": SubResource("Animation_tb4b4"),
+"attacked": SubResource("Animation_761cg")
+}
+
 [node name="Foe" type="Area2D"]
-position = Vector2(604, 289)
+position = Vector2(0, 1)
 script = ExtResource("2_6r5mc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -17,3 +54,8 @@ sprite_frames = ExtResource("2_dc8dr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 1)
 shape = SubResource("CircleShape2D_vefud")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6e7lk")
+}

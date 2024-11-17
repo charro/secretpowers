@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://nowb747qdxcw"]
+[gd_scene load_steps=8 format=3 uid="uid://nowb747qdxcw"]
 
 [ext_resource type="Texture2D" uid="uid://bls8cee4nfwlc" path="res://player/player.png" id="1_oby1s"]
 [ext_resource type="Script" path="res://player/player.gd" id="2_2h80n"]
+[ext_resource type="AudioStream" uid="uid://birvxqnn3h8fw" path="res://sound/punch-short.mp3" id="3_g27ml"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2losx"]
 atlas = ExtResource("1_oby1s")
@@ -49,6 +50,9 @@ frame_progress = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(13, 8)
 shape = SubResource("CapsuleShape2D_vn0iu")
+
+[node name="PunchSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_g27ml")
 
 [connection signal="area_entered" from="." to="." method="_on_player_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_player_area_exited"]

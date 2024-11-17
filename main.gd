@@ -8,6 +8,10 @@ var points: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$UI.set_life(life)
+	for actionName in InputMap.get_actions():
+		print("%s:" % actionName)
+		for action_event in InputMap.action_get_events(actionName):
+			print("  %s" % action_event.as_text())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -18,6 +22,7 @@ func _on_foe_spawn_timer_timeout() -> void:
 
 func _spawn_new_enemy() -> void:
 	var new_enemy = foe_scene.instantiate()
+	new_enemy.position = $FoesSpawningPoint.position
 	add_child(new_enemy)
 	new_enemy.killed.connect(_on_enemy_killed)
 	new_enemy.survived.connect(_on_enemy_survived)

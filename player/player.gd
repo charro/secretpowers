@@ -11,10 +11,11 @@ func _process(delta: float) -> void:
 	get_input()
 	
 func get_input():
-	if Input.is_action_pressed("punch"):
+	if Input.is_action_just_pressed("punch"):
 		$AnimatedSprite2D.play("punch")
 		current_state = "attack"
 		get_tree().call_group("touching_player", "attacked")
+		$PunchSound.play()
 
 func _on_animation_finished() -> void:
 	$AnimatedSprite2D.animation = "idle"

@@ -18,8 +18,12 @@ position = Vector2(64, 247)
 wait_time = 3.0
 autostart = true
 script = ExtResource("4_8nhan")
+max_wait_time = 5
 
 [node name="UI" parent="." instance=ExtResource("4_yiwp2")]
+
+[node name="FoesSpawningPoint" type="Node2D" parent="."]
+position = Vector2(610, 299)
 
 [connection signal="timeout" from="FoeSpawnTimer" to="." method="_on_foe_spawn_timer_timeout"]
 [connection signal="timeout" from="FoeSpawnTimer" to="FoeSpawnTimer" method="_on_timeout"]
