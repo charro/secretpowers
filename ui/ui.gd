@@ -11,10 +11,15 @@ func _process(delta: float) -> void:
 	pass
 
 func set_points(points: int):
-	$Points.text = str(points)
+	$ProgressBar.value = points
 	
 func set_life(life: int):
 	$LifeBar.value = life
 
 func show_dead():
 	$GameOver.visible = true
+
+func level_up(new_max_points: int):
+	$NewPowerPanel.visible = true
+	$ProgressBar.max_value = new_max_points
+	$ProgressBar.value = 0

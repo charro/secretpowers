@@ -1,9 +1,10 @@
 extends Node2D
 
 @export var foe_scene: PackedScene
-
-var points: int = 0
 @export var life: int
+var points: int = 0
+var level = 0
+var points_to_reach_next_level = [10, 20, 35, 55, 80, 120]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,6 +31,7 @@ func _spawn_new_enemy() -> void:
 func _on_enemy_killed() -> void:
 	points = points + 1
 	$UI.set_points(points)
+	_check_if_next_level()
 
 func _on_enemy_survived() -> void:
 	life = life -1
@@ -40,3 +42,11 @@ func _check_if_dead():
 	if life < 1:
 		$UI.show_dead()
 		$FoeSpawnTimer.stop()
+
+func _check_if_next_level():
+	if points >= points_to_reach_next_level[level]:
+		print("LEVEL UP!!")
+		var points_needed_for_next_level = \
+				points_to_reach_next_level[level + 1] - points_to_reach_next_level[level] 
+		$UI.level_up(points_needed_for_next_level)
+		level += 1

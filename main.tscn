@@ -18,7 +18,7 @@ position = Vector2(64, 247)
 wait_time = 3.0
 autostart = true
 script = ExtResource("4_8nhan")
-max_wait_time = 5
+max_wait_time = 3
 
 [node name="UI" parent="." instance=ExtResource("4_yiwp2")]
 
