@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://de3qgis6yb3ky"]
+
+[ext_resource type="Texture2D" uid="uid://bym8vpvo0xcm1" path="res://ui/Keyboard Extras.png" id="1_btkpl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xhn7"]
+atlas = ExtResource("1_btkpl")
+region = Rect2(4, 34, 24, 12)
+
+[node name="FirstKey" type="TextureRect"]
+texture = SubResource("AtlasTexture_2xhn7")
+expand_mode = 3

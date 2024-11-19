@@ -20,6 +20,6 @@ func show_dead():
 	$GameOver.visible = true
 
 func level_up(new_max_points: int):
-	$NewPowerPanel.visible = true
+	$NewSecretPowerPanel.visible = true
 	$ProgressBar.max_value = new_max_points
 	$ProgressBar.value = 0

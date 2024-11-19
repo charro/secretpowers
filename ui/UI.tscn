@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bv3852wpcjej4"]
+[gd_scene load_steps=8 format=3 uid="uid://bv3852wpcjej4"]
 
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_up53w"]
-[ext_resource type="Texture2D" uid="uid://bym8vpvo0xcm1" path="res://ui/Keyboard Extras.png" id="2_bwiju"]
+[ext_resource type="PackedScene" uid="uid://de3qgis6yb3ky" path="res://ui/first_key.tscn" id="2_khenw"]
+[ext_resource type="PackedScene" uid="uid://c57xd0fvhf2k0" path="res://ui/second_key.tscn" id="3_vvtme"]
+[ext_resource type="PackedScene" uid="uid://dfbhn1n5ujohg" path="res://ui/third_key.tscn" id="4_mtd00"]
+[ext_resource type="PackedScene" uid="uid://ca3x8iboymx66" path="res://ui/fourth_key.tscn" id="5_jp4dj"]
+[ext_resource type="PackedScene" uid="uid://btnpom6qsrn7s" path="res://ui/plus_sign.tscn" id="6_x8ijh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lr8c5"]
 
@@ -26,6 +30,7 @@ theme_override_font_sizes/font_size = 50
 text = "GAME OVER"
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
 offset_left = 7.0
 offset_top = 7.0
 offset_right = 204.0
@@ -45,15 +50,16 @@ max_value = 10.0
 step = -1.0
 value = 10.0
 
-[node name="NewPowerPanel" type="Panel" parent="."]
+[node name="NewSecretPowerPanel" type="Panel" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 74.0
-offset_top = 30.0
-offset_right = 581.0
-offset_bottom = 267.0
+offset_left = 76.0
+offset_top = 55.0
+offset_right = 583.0
+offset_bottom = 292.0
 
-[node name="NewSecretPower" type="Label" parent="NewPowerPanel"]
+[node name="NewSecretPower" type="Label" parent="NewSecretPowerPanel"]
+layout_mode = 0
 offset_left = 81.0
 offset_top = 7.0
 offset_right = 419.0
@@ -61,23 +67,89 @@ offset_bottom = 103.0
 theme_override_colors/font_color = Color(1, 0.333333, 1, 1)
 theme_override_font_sizes/font_size = 30
 text = "NEW SECRET POWER !!
-Try these keys to find it"
+Try combining 
+these keys to find it"
 horizontal_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="NewPowerPanel"]
+[node name="Keys" type="ColorRect" parent="NewSecretPowerPanel"]
 layout_mode = 0
-offset_left = 68.0
-offset_top = 107.0
-offset_right = 429.0
-offset_bottom = 216.0
+offset_left = 18.0
+offset_top = 151.0
+offset_right = 482.0
+offset_bottom = 218.0
+color = Color(1, 0.333333, 1, 1)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="NewPowerPanel/ColorRect"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 4.0
-offset_right = 356.0
-offset_bottom = 102.0
+[node name="KeysContainer" type="HBoxContainer" parent="NewSecretPowerPanel/Keys"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.5
+offset_top = -21.5
+offset_right = 30.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Control" type="TextureRect" parent="NewPowerPanel/ColorRect/HBoxContainer"]
+[node name="FirstKey" parent="NewSecretPowerPanel/Keys/KeysContainer" instance=ExtResource("2_khenw")]
 layout_mode = 2
-texture = ExtResource("2_bwiju")
+
+[node name="SecondKey" parent="NewSecretPowerPanel/Keys/KeysContainer" instance=ExtResource("3_vvtme")]
+layout_mode = 2
+
+[node name="ThirdKey" parent="NewSecretPowerPanel/Keys/KeysContainer" instance=ExtResource("4_mtd00")]
+layout_mode = 2
+
+[node name="FourthKey" parent="NewSecretPowerPanel/Keys/KeysContainer" instance=ExtResource("5_jp4dj")]
+layout_mode = 2
+
+[node name="SecretPowerFound" type="Panel" parent="."]
+visible = false
+offset_left = 76.0
+offset_top = 55.0
+offset_right = 572.0
+offset_bottom = 234.0
+
+[node name="NewSecretPower" type="Label" parent="SecretPowerFound"]
+layout_mode = 0
+offset_left = 81.0
+offset_top = 28.0
+offset_right = 419.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(1, 0.333333, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "SECRET POWER FOUND"
+horizontal_alignment = 1
+
+[node name="Keys" type="ColorRect" parent="SecretPowerFound"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 93.0
+offset_right = 484.0
+offset_bottom = 160.0
+color = Color(1, 0.333333, 1, 1)
+
+[node name="KeysContainer" type="HBoxContainer" parent="SecretPowerFound/Keys"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.5
+offset_top = -21.5
+offset_right = 30.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FirstKey" parent="SecretPowerFound/Keys/KeysContainer" instance=ExtResource("2_khenw")]
+layout_mode = 2
+
+[node name="PlusSign" parent="SecretPowerFound/Keys/KeysContainer" instance=ExtResource("6_x8ijh")]
+layout_mode = 2
+
+[node name="FirstKey2" parent="SecretPowerFound/Keys/KeysContainer" instance=ExtResource("2_khenw")]
+layout_mode = 2
