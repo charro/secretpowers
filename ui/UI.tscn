@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bv3852wpcjej4"]
+[gd_scene load_steps=10 format=3 uid="uid://bv3852wpcjej4"]
 
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_up53w"]
 [ext_resource type="PackedScene" uid="uid://de3qgis6yb3ky" path="res://ui/first_key.tscn" id="2_khenw"]
@@ -8,6 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://btnpom6qsrn7s" path="res://ui/plus_sign.tscn" id="6_x8ijh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lr8c5"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1knen"]
+bg_color = Color(1, 0.333333, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fsm5t"]
+bg_color = Color(0.333333, 1, 1, 1)
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -31,11 +38,12 @@ text = "GAME OVER"
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 0
-offset_left = 7.0
+offset_left = 13.0
 offset_top = 7.0
-offset_right = 204.0
+offset_right = 210.0
 offset_bottom = 34.0
 theme_override_styles/background = SubResource("StyleBoxFlat_lr8c5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1knen")
 max_value = 10.0
 step = 1.0
 
@@ -46,6 +54,7 @@ offset_top = 7.0
 offset_right = 625.0
 offset_bottom = 34.0
 theme_override_styles/background = SubResource("StyleBoxFlat_lr8c5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fsm5t")
 max_value = 10.0
 step = -1.0
 value = 10.0
@@ -60,13 +69,13 @@ offset_bottom = 292.0
 
 [node name="NewSecretPower" type="Label" parent="NewSecretPowerPanel"]
 layout_mode = 0
-offset_left = 81.0
+offset_left = 35.0
 offset_top = 7.0
-offset_right = 419.0
-offset_bottom = 103.0
+offset_right = 469.0
+offset_bottom = 139.0
 theme_override_colors/font_color = Color(1, 0.333333, 1, 1)
 theme_override_font_sizes/font_size = 30
-text = "NEW SECRET POWER !!
+text = "UNBLOCKED SECRET POWER !!
 Try combining 
 these keys to find it"
 horizontal_alignment = 1
@@ -97,16 +106,20 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="SecondKey" parent="NewSecretPowerPanel/Keys/KeysContainer" instance=ExtResource("3_vvtme")]
+visible = false
 layout_mode = 2
 
 [node name="ThirdKey" parent="NewSecretPowerPanel/Keys/KeysContainer" instance=ExtResource("4_mtd00")]
+visible = false
 layout_mode = 2
 
 [node name="FourthKey" parent="NewSecretPowerPanel/Keys/KeysContainer" instance=ExtResource("5_jp4dj")]
+visible = false
 layout_mode = 2
 
 [node name="SecretPowerFound" type="Panel" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 76.0
 offset_top = 55.0
 offset_right = 572.0

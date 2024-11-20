@@ -6,6 +6,10 @@ extends Area2D
 var velocity: float
 var life: int
 
+enum STATES { MOVE, STOP } 
+
+var current_state
+
 signal killed
 signal survived
 
@@ -13,12 +17,14 @@ signal survived
 func _ready() -> void:
 	life = max_life
 	velocity = max_velocity
+	move()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position.x = position.x - velocity * delta
+	if current_state == STATES.MOVE:
+		position.x = position.x - velocity * delta
 	check_if_survived()
-	
+
 func attacked():
 	life = clampi(life - 1, 0, max_life)
 	velocity = clampf(velocity * 0.7, 0, max_velocity)
@@ -27,6 +33,12 @@ func attacked():
 	if life == 0:
 		queue_free()
 		killed.emit()
+
+func stop():
+	current_state = STATES.STOP
+	
+func move():
+	current_state = STATES.MOVE
 
 func check_if_survived():
 	if position.x < 0:
