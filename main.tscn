@@ -15,6 +15,10 @@ life = 10
 [node name="SecretPowerChecker" type="Node2D" parent="."]
 script = ExtResource("3_j86wd")
 
+[node name="CooldownTimer" type="Timer" parent="SecretPowerChecker"]
+wait_time = 5.0
+one_shot = true
+
 [node name="Player" parent="." instance=ExtResource("1_vk8qf")]
 position = Vector2(64, 247)
 
@@ -33,6 +37,7 @@ position = Vector2(610, 299)
 wait_time = 5.0
 one_shot = true
 
+[connection signal="timeout" from="SecretPowerChecker/CooldownTimer" to="SecretPowerChecker" method="_on_cooldown_timer_timeout"]
 [connection signal="timeout" from="FoeSpawnTimer" to="." method="_on_foe_spawn_timer_timeout"]
 [connection signal="timeout" from="FoeSpawnTimer" to="FoeSpawnTimer" method="_on_timeout"]
 [connection signal="timeout" from="NextLevelTimer" to="." method="_next_level"]

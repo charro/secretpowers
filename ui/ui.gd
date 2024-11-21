@@ -28,3 +28,11 @@ func hide_pop_ups():
 	$GameOver.visible = false
 	$NewSecretPowerPanel.visible = false
 	$SecretPowerFound.visible = false
+
+func update_cooldown_time(remaining_time):
+	var remaining_time_in_secs = int(remaining_time) + 1
+	$CooldownTime.visible = true
+	$CooldownTime.text = "POWERS COOLDOWN: " + str(remaining_time_in_secs)
+
+func hide_cooldown():
+	$CooldownTime.visible = false

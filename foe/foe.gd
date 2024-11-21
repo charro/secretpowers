@@ -44,3 +44,7 @@ func check_if_survived():
 	if position.x < 0:
 		survived.emit()
 		queue_free()
+
+func secret_power(power: SecretPowerChecker.SECRET_POWER):
+	if power == SecretPowerChecker.SECRET_POWER.MEGA_PUNCH:
+		queue_free()

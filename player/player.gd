@@ -2,8 +2,6 @@ extends Area2D
 
 var current_state = "idle"
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -19,7 +17,6 @@ func get_input():
 		get_tree().call_group("touching_player", "attacked")
 		$PunchSound.play()
 		
-
 func _on_animation_finished() -> void:
 	$AnimatedSprite2D.animation = "idle"
 	current_state = "idle"

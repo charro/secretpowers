@@ -166,3 +166,12 @@ layout_mode = 2
 
 [node name="FirstKey2" parent="SecretPowerFound/Keys/KeysContainer" instance=ExtResource("2_khenw")]
 layout_mode = 2
+
+[node name="CooldownTime" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 14.0
+offset_top = 51.0
+offset_right = 171.0
+offset_bottom = 74.0
+text = "POWERS COOLDOWN: 5"
