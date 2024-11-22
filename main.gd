@@ -22,6 +22,7 @@ func _spawn_new_enemy() -> void:
 	new_enemy.position = $FoesSpawningPoint.position
 	add_child(new_enemy)
 	new_enemy.add_to_group("foes")
+	new_enemy.add_to_group("moving")
 	new_enemy.killed.connect(_on_enemy_killed)
 	new_enemy.survived.connect(_on_enemy_survived)
 
@@ -51,13 +52,14 @@ func _check_if_next_level():
 		$NextLevelTimer.start()
 
 func _stop_foes():
-	get_tree().call_group("foes", "stop")
+	get_tree().call_group("moving", "stop")
 	$FoeSpawnTimer.stop()
 
 func _next_level():
 	_move_foes()
 	$UI.hide_pop_ups()
+	$SecretPowerChecker.new_power_unblocked()
 
 func _move_foes():
-	get_tree().call_group("foes", "move")
+	get_tree().call_group("moving", "move")
 	$FoeSpawnTimer.start()

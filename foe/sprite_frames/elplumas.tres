@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://cxqsmagfcq0l3"]
+
+[ext_resource type="Texture2D" uid="uid://bjcwfcibs3fdk" path="res://foe/elplumas.png" id="1_u73de"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2i0ue"]
+atlas = ExtResource("1_u73de")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qq8k8"]
+atlas = ExtResource("1_u73de")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ex8ak"]
+atlas = ExtResource("1_u73de")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y077y"]
+atlas = ExtResource("1_u73de")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8y7wu"]
+atlas = ExtResource("1_u73de")
+region = Rect2(256, 0, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2i0ue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qq8k8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ex8ak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y077y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8y7wu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]

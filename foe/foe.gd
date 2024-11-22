@@ -15,6 +15,8 @@ signal survived
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var frames =preload("res://foe/sprite_frames/foe.tres")
+	$AnimatedSprite2D.sprite_frames = frames
 	life = max_life
 	velocity = max_velocity
 	move()
@@ -45,6 +47,6 @@ func check_if_survived():
 		survived.emit()
 		queue_free()
 
-func secret_power(power: SecretPowerChecker.SECRET_POWER):
-	if power == SecretPowerChecker.SECRET_POWER.MEGA_PUNCH:
+func secret_power(power: SecretPowerChecker.SECRET_POWERS):
+	if power == SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
 		queue_free()

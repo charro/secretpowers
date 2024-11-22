@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://ca3x8iboymx66"]
 
-[ext_resource type="Texture2D" uid="uid://c3kqvvtns6uy7" path="res://ui/Keyboard Letters and Symbols.png" id="1_7noem"]
+[ext_resource type="Texture2D" uid="uid://bym8vpvo0xcm1" path="res://ui/Keyboard Extras.png" id="1_yjfqh"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dmx70"]
-atlas = ExtResource("1_7noem")
-region = Rect2(49, 2, 13, 12)
+[sub_resource type="AtlasTexture" id="AtlasTexture_45p1u"]
+atlas = ExtResource("1_yjfqh")
+region = Rect2(65, 34, 30, 12)
 
 [node name="FourthKey" type="TextureRect"]
-texture = SubResource("AtlasTexture_dmx70")
+texture = SubResource("AtlasTexture_45p1u")
 expand_mode = 3

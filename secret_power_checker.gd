@@ -2,12 +2,16 @@ extends Node2D
 class_name SecretPowerChecker
 
 const MAX_TIME_FOR_CHECK = 1 #seconds
-enum ACTION_KEYS { FIRST, SECOND, THIRD, FOURTH }
-enum SECRET_POWER { MEGA_PUNCH }
-var first_power = [ACTION_KEYS.FIRST, ACTION_KEYS.FIRST, ACTION_KEYS.FIRST]
+enum SECRET_POWERS { MEGA_PUNCH }
 var current_actions_sequence = []
 var accumulated_time_since_last_check = 0
 var is_cooldown_active = false
+
+var secret_powers_found = 0
+
+@onready var secret_powers = {
+	SECRET_POWERS.MEGA_PUNCH: $FirstSecretPower
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,14 +29,17 @@ func _process(delta: float) -> void:
 			accumulated_time_since_last_check = 0
 			
 		if Input.is_action_just_pressed("first"):
-			new_action_pressed(ACTION_KEYS.FIRST)
+			new_action_pressed(SecretPower.ACTION_KEYS.FIRST)
 		
-func new_action_pressed(action: ACTION_KEYS):
+func new_action_pressed(action: SecretPower.ACTION_KEYS):
 	current_actions_sequence.append(action)
-	if current_actions_sequence == first_power:
-		power_triggered(SECRET_POWER.MEGA_PUNCH)
-		
-func power_triggered(secret_power: SECRET_POWER):
+	for secret_power_index in range(0, secret_powers_found):
+		var secret_power = secret_powers[secret_power_index]
+		if secret_power.matches(current_actions_sequence):
+			power_triggered(secret_power_index)
+
+func power_triggered(secret_power: SECRET_POWERS):
+	print("SECRET POWER TRIGGERED!!:", secret_power)
 	get_tree().call_group("touching_player", "secret_power", str(secret_power))
 	current_actions_sequence.clear()
 	accumulated_time_since_last_check = 0
@@ -42,3 +49,7 @@ func power_triggered(secret_power: SECRET_POWER):
 func _on_cooldown_timer_timeout() -> void:
 	is_cooldown_active = false
 	$"../UI".hide_cooldown()
+
+func new_power_unblocked():
+	secret_powers_found = \
+		clampi(secret_powers_found + 1, 0, len(SECRET_POWERS))

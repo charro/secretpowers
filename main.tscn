@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://df2k8c4d6qjid"]
+[gd_scene load_steps=8 format=3 uid="uid://df2k8c4d6qjid"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m8662"]
 [ext_resource type="PackedScene" uid="uid://nowb747qdxcw" path="res://player/player.tscn" id="1_vk8qf"]
 [ext_resource type="PackedScene" uid="uid://c5ox76g2j1af4" path="res://foe/foe.tscn" id="2_kqppx"]
 [ext_resource type="Script" path="res://secret_power_checker.gd" id="3_j86wd"]
 [ext_resource type="Script" path="res://foe_spawn_timer.gd" id="4_8nhan"]
+[ext_resource type="PackedScene" uid="uid://mnucat2y72lb" path="res://secret_powers/secret_power.tscn" id="4_pspov"]
 [ext_resource type="PackedScene" uid="uid://bv3852wpcjej4" path="res://ui/UI.tscn" id="4_yiwp2"]
 
 [node name="Main" type="Node2D"]
@@ -19,7 +20,10 @@ script = ExtResource("3_j86wd")
 wait_time = 5.0
 one_shot = true
 
-[node name="Player" parent="." instance=ExtResource("1_vk8qf")]
+[node name="FirstSecretPower" parent="SecretPowerChecker" instance=ExtResource("4_pspov")]
+keys_combination = Array[int]([0, 0, 0])
+
+[node name="Player" parent="." groups=["moving"] instance=ExtResource("1_vk8qf")]
 position = Vector2(64, 247)
 
 [node name="FoeSpawnTimer" type="Timer" parent="."]
@@ -31,7 +35,7 @@ max_wait_time = 3
 [node name="UI" parent="." instance=ExtResource("4_yiwp2")]
 
 [node name="FoesSpawningPoint" type="Node2D" parent="."]
-position = Vector2(610, 299)
+position = Vector2(586, 281)
 
 [node name="NextLevelTimer" type="Timer" parent="."]
 wait_time = 5.0
