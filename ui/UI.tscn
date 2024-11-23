@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bv3852wpcjej4"]
+[gd_scene load_steps=12 format=3 uid="uid://bv3852wpcjej4"]
 
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_up53w"]
 [ext_resource type="PackedScene" uid="uid://de3qgis6yb3ky" path="res://ui/first_key.tscn" id="2_khenw"]
 [ext_resource type="PackedScene" uid="uid://c57xd0fvhf2k0" path="res://ui/second_key.tscn" id="3_vvtme"]
 [ext_resource type="PackedScene" uid="uid://dfbhn1n5ujohg" path="res://ui/third_key.tscn" id="4_mtd00"]
 [ext_resource type="PackedScene" uid="uid://ca3x8iboymx66" path="res://ui/fourth_key.tscn" id="5_jp4dj"]
+[ext_resource type="Script" path="res://ui/secret_power_found.gd" id="6_bt2mh"]
 [ext_resource type="PackedScene" uid="uid://btnpom6qsrn7s" path="res://ui/plus_sign.tscn" id="6_x8ijh"]
+[ext_resource type="Script" path="res://ui/keys_container.gd" id="7_woumb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lr8c5"]
 bg_color = Color(0, 0, 0, 1)
@@ -124,16 +126,17 @@ offset_left = 76.0
 offset_top = 55.0
 offset_right = 572.0
 offset_bottom = 234.0
+script = ExtResource("6_bt2mh")
 
 [node name="NewSecretPower" type="Label" parent="SecretPowerFound"]
 layout_mode = 0
-offset_left = 81.0
-offset_top = 28.0
-offset_right = 419.0
-offset_bottom = 75.0
-theme_override_colors/font_color = Color(1, 0.333333, 1, 1)
+offset_left = 63.0
+offset_top = 24.0
+offset_right = 430.0
+offset_bottom = 71.0
+theme_override_colors/font_color = Color(0.333333, 1, 1, 1)
 theme_override_font_sizes/font_size = 30
-text = "SECRET POWER FOUND"
+text = "SECRET POWER FOUND !!!!"
 horizontal_alignment = 1
 
 [node name="Keys" type="ColorRect" parent="SecretPowerFound"]
@@ -142,7 +145,7 @@ offset_left = 20.0
 offset_top = 93.0
 offset_right = 484.0
 offset_bottom = 160.0
-color = Color(1, 0.333333, 1, 1)
+color = Color(0.333333, 1, 1, 1)
 
 [node name="KeysContainer" type="HBoxContainer" parent="SecretPowerFound/Keys"]
 layout_mode = 1
@@ -157,15 +160,12 @@ offset_right = 30.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="FirstKey" parent="SecretPowerFound/Keys/KeysContainer" instance=ExtResource("2_khenw")]
-layout_mode = 2
-
-[node name="PlusSign" parent="SecretPowerFound/Keys/KeysContainer" instance=ExtResource("6_x8ijh")]
-layout_mode = 2
-
-[node name="FirstKey2" parent="SecretPowerFound/Keys/KeysContainer" instance=ExtResource("2_khenw")]
-layout_mode = 2
+script = ExtResource("7_woumb")
+first_key = ExtResource("2_khenw")
+second_key = ExtResource("3_vvtme")
+third_key = ExtResource("4_mtd00")
+fourth_key = ExtResource("5_jp4dj")
+plus_sign = ExtResource("6_x8ijh")
 
 [node name="CooldownTime" type="Label" parent="."]
 visible = false

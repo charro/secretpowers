@@ -13,12 +13,19 @@ func _process(delta: float) -> void:
 	if current_state == STATES.IDLE:
 		get_input()
 	
-func get_input():	
+func get_input():
+	var pressed_attack_key = false
 	if Input.is_action_just_pressed("first"):
 		$AnimatedSprite2D.play("punch")
+		$PunchSound.play()
+		pressed_attack_key = true
+	elif Input.is_action_just_pressed("second"):
+		pressed_attack_key = true
+
+	if pressed_attack_key:
 		current_state = STATES.ATTACK
 		get_tree().call_group("touching_player", "attacked")
-		$PunchSound.play()
+
 		
 func _on_animation_finished() -> void:
 	$AnimatedSprite2D.animation = "idle"
