@@ -33,9 +33,14 @@ func hide_cooldown():
 func new_secret_power_found(keys_to_trigger_power):
 	$SecretPowerFound.visible = true
 	$SecretPowerFound.show_keys_combination(keys_to_trigger_power)
+	$PowerFoundTimer.start()
 
 func level_up(new_max_points: int, keys_for_unblocked_power):
-	$NewSecretPowerPanel.visible = true
-	$NewSecretPowerPanel.show_keys_combination(keys_for_unblocked_power)
+	if keys_for_unblocked_power:
+		$NewSecretPowerPanel.visible = true
+		$NewSecretPowerPanel.show_keys_combination(keys_for_unblocked_power)
 	$ProgressBar.max_value = new_max_points
 	$ProgressBar.value = 0
+
+func _on_power_found_timer_timeout() -> void:
+	$SecretPowerFound.visible = false

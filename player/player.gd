@@ -20,6 +20,7 @@ func get_input():
 		$PunchSound.play()
 		pressed_attack_key = true
 	elif Input.is_action_just_pressed("second"):
+		$AnimatedSprite2D.play("kick")
 		pressed_attack_key = true
 
 	if pressed_attack_key:

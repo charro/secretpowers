@@ -167,3 +167,8 @@ offset_top = 51.0
 offset_right = 171.0
 offset_bottom = 74.0
 text = "POWERS COOLDOWN: 5"
+
+[node name="PowerFoundTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="PowerFoundTimer" to="." method="_on_power_found_timer_timeout"]

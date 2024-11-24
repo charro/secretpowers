@@ -2,9 +2,9 @@ extends Node2D
 
 @export var foe_scene: PackedScene
 @export var life: int
-var points: int                                = 0
-var level: int                                 = 0
-var points_to_reach_next_level: Array[Variant] = [1, 20, 35, 55, 80, 120]
+var points: int = 0
+var level: int = 0
+var points_to_reach_next_level: Array[Variant] = [1, 6, 10, 15, 30, 55]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -56,7 +56,7 @@ func _stop_foes():
 	get_tree().call_group("moving", "stop")
 	$FoeSpawnTimer.stop()
 
-func _next_level():
+func _start_next_level():
 	_move_foes()
 	$UI.hide_pop_ups()
 	$SecretPowerChecker.new_power_unblocked()

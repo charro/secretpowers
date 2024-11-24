@@ -2,7 +2,7 @@ extends Node2D
 class_name SecretPowerChecker
 
 const MAX_TIME_FOR_CHECK: int = 1 #seconds
-enum SECRET_POWERS { MEGA_PUNCH = 0, KAMEAMEA = 1 }
+enum SECRET_POWERS { MEGA_PUNCH = 0, KAMEAMEA = 1, TORNADO = 2 }
 var current_actions_sequence: Array[Variant] = []
 var accumulated_time_since_last_check: float   = 0
 var is_cooldown_active: bool = false
@@ -12,7 +12,8 @@ var secret_powers_found: Array[Variant] = []
 
 @onready var secret_powers: Dictionary = {
 	SECRET_POWERS.MEGA_PUNCH: $SecretPowers/FirstSecretPower,
-	SECRET_POWERS.KAMEAMEA: $SecretPowers/SecondSecretPower
+	SECRET_POWERS.KAMEAMEA: $SecretPowers/SecondSecretPower,
+	SECRET_POWERS.TORNADO: $SecretPowers/ThirdSecretPower
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -64,7 +65,7 @@ func new_power_unblocked():
 		clampi(secret_powers_unblocked + 1, 0, len(SECRET_POWERS))
 
 func get_keys_on_secret_power(level: int):
-	if len(SECRET_POWERS) < level:
+	if level < len(SECRET_POWERS) :
 		var secret_power_for_level = secret_powers[level]
 		var secret_power_keys = secret_power_for_level.keys_combination
 		var unique_keys: Array[Variant] = []

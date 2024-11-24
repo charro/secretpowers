@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://nowb747qdxcw"]
+[gd_scene load_steps=9 format=3 uid="uid://nowb747qdxcw"]
 
 [ext_resource type="Texture2D" uid="uid://bls8cee4nfwlc" path="res://player/player.png" id="1_oby1s"]
 [ext_resource type="Script" path="res://player/player.gd" id="2_2h80n"]
@@ -7,6 +7,10 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_2losx"]
 atlas = ExtResource("1_oby1s")
 region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1v0pc"]
+atlas = ExtResource("1_oby1s")
+region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_17qo6"]
 atlas = ExtResource("1_oby1s")
@@ -24,11 +28,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_1v0pc")
+}],
+"loop": false,
+"name": &"kick",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_17qo6")
 }],
 "loop": false,
 "name": &"punch",
-"speed": 10.0
+"speed": 8.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vn0iu"]
@@ -45,7 +57,6 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_eu857")
 animation = &"punch"
 autoplay = "idle"
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(13, 8)

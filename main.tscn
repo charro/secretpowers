@@ -29,6 +29,10 @@ keys_combination = Array[int]([0, 0, 0, 0, 0])
 secret_power_id = 1
 keys_combination = Array[int]([1, 1, 0])
 
+[node name="ThirdSecretPower" parent="SecretPowerChecker/SecretPowers" instance=ExtResource("4_pspov")]
+secret_power_id = 2
+keys_combination = Array[int]([2, 1, 0])
+
 [node name="Player" parent="." groups=["moving"] instance=ExtResource("1_vk8qf")]
 position = Vector2(64, 247)
 
@@ -50,4 +54,4 @@ one_shot = true
 [connection signal="timeout" from="SecretPowerChecker/CooldownTimer" to="SecretPowerChecker" method="_on_cooldown_timer_timeout"]
 [connection signal="timeout" from="FoeSpawnTimer" to="." method="_on_foe_spawn_timer_timeout"]
 [connection signal="timeout" from="FoeSpawnTimer" to="FoeSpawnTimer" method="_on_timeout"]
-[connection signal="timeout" from="NextLevelTimer" to="." method="_next_level"]
+[connection signal="timeout" from="NextLevelTimer" to="." method="_start_next_level"]
