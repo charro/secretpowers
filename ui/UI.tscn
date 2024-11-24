@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c57xd0fvhf2k0" path="res://ui/second_key.tscn" id="3_vvtme"]
 [ext_resource type="PackedScene" uid="uid://dfbhn1n5ujohg" path="res://ui/third_key.tscn" id="4_mtd00"]
 [ext_resource type="PackedScene" uid="uid://ca3x8iboymx66" path="res://ui/fourth_key.tscn" id="5_jp4dj"]
-[ext_resource type="Script" path="res://ui/secret_power_found.gd" id="6_bt2mh"]
+[ext_resource type="Script" path="res://ui/key_combination_panel.gd" id="6_bt2mh"]
 [ext_resource type="PackedScene" uid="uid://btnpom6qsrn7s" path="res://ui/plus_sign.tscn" id="6_x8ijh"]
 [ext_resource type="Script" path="res://ui/keys_container.gd" id="7_woumb"]
 
@@ -68,6 +68,7 @@ offset_left = 76.0
 offset_top = 55.0
 offset_right = 583.0
 offset_bottom = 292.0
+script = ExtResource("6_bt2mh")
 
 [node name="NewSecretPower" type="Label" parent="NewSecretPowerPanel"]
 layout_mode = 0
@@ -103,21 +104,12 @@ offset_right = 30.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="FirstKey" parent="NewSecretPowerPanel/Keys/KeysContainer" instance=ExtResource("2_khenw")]
-layout_mode = 2
-
-[node name="SecondKey" parent="NewSecretPowerPanel/Keys/KeysContainer" instance=ExtResource("3_vvtme")]
-visible = false
-layout_mode = 2
-
-[node name="ThirdKey" parent="NewSecretPowerPanel/Keys/KeysContainer" instance=ExtResource("4_mtd00")]
-visible = false
-layout_mode = 2
-
-[node name="FourthKey" parent="NewSecretPowerPanel/Keys/KeysContainer" instance=ExtResource("5_jp4dj")]
-visible = false
-layout_mode = 2
+script = ExtResource("7_woumb")
+first_key = ExtResource("2_khenw")
+second_key = ExtResource("3_vvtme")
+third_key = ExtResource("4_mtd00")
+fourth_key = ExtResource("5_jp4dj")
+plus_sign = ExtResource("6_x8ijh")
 
 [node name="SecretPowerFound" type="Panel" parent="."]
 visible = false

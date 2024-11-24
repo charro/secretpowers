@@ -3,6 +3,7 @@ class_name SecretPower
 
 enum ACTION_KEYS { FIRST, SECOND, THIRD, FOURTH }
 
+@export var secret_power_id: SecretPowerChecker.SECRET_POWERS
 @export var keys_combination: Array[ACTION_KEYS]
 
 # Called when the node enters the scene tree for the first time.

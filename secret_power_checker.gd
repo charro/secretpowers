@@ -1,18 +1,18 @@
 extends Node2D
 class_name SecretPowerChecker
 
-const MAX_TIME_FOR_CHECK = 1 #seconds
-enum SECRET_POWERS { MEGA_PUNCH, KAMEAMEA }
-var current_actions_sequence = []
-var accumulated_time_since_last_check = 0
-var is_cooldown_active = false
+const MAX_TIME_FOR_CHECK: int = 1 #seconds
+enum SECRET_POWERS { MEGA_PUNCH = 0, KAMEAMEA = 1 }
+var current_actions_sequence: Array[Variant] = []
+var accumulated_time_since_last_check: float   = 0
+var is_cooldown_active: bool = false
 
-var secret_powers_unblocked = 0
-var secret_powers_found = []
+var secret_powers_unblocked: int        = 0
+var secret_powers_found: Array[Variant] = []
 
-@onready var secret_powers = {
-	SECRET_POWERS.MEGA_PUNCH: $FirstSecretPower,
-	SECRET_POWERS.KAMEAMEA: $SecondSecretPower
+@onready var secret_powers: Dictionary = {
+	SECRET_POWERS.MEGA_PUNCH: $SecretPowers/FirstSecretPower,
+	SECRET_POWERS.KAMEAMEA: $SecretPowers/SecondSecretPower
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -22,7 +22,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if is_cooldown_active:
-		$"../UI".update_cooldown_time($CooldownTimer.get_time_left())	
+		$"../UI".update_cooldown_time($CooldownTimer.get_time_left())
 	else:
 		accumulated_time_since_last_check += delta
 		
@@ -62,3 +62,15 @@ func _on_cooldown_timer_timeout() -> void:
 func new_power_unblocked():
 	secret_powers_unblocked = \
 		clampi(secret_powers_unblocked + 1, 0, len(SECRET_POWERS))
+
+func get_keys_on_secret_power(level: int):
+	if len(SECRET_POWERS) < level:
+		var secret_power_for_level = secret_powers[level]
+		var secret_power_keys = secret_power_for_level.keys_combination
+		var unique_keys: Array[Variant] = []
+		for key in secret_power_keys:
+			if key not in unique_keys:
+				unique_keys.append(key)
+		return unique_keys
+	else:
+		return []

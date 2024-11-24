@@ -1,4 +1,5 @@
 extends Panel
+class_name KeysCombinationPanel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,4 +14,3 @@ func show_keys_combination(keys):
 	$Keys/KeysContainer.clean()
 	for key in keys:
 		$Keys/KeysContainer.add_key(key)
-	

@@ -2,9 +2,9 @@ extends Node2D
 
 @export var foe_scene: PackedScene
 @export var life: int
-var points: int = 0
-var level = 0
-var points_to_reach_next_level = [1, 20, 35, 55, 80, 120]
+var points: int                                = 0
+var level: int                                 = 0
+var points_to_reach_next_level: Array[Variant] = [1, 20, 35, 55, 80, 120]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,9 +45,10 @@ func _check_if_next_level():
 	if points >= points_to_reach_next_level[level]:
 		print("LEVEL UP!!")
 		var points_needed_for_next_level = \
-				points_to_reach_next_level[level + 1] - points_to_reach_next_level[level] 
-		$UI.level_up(points_needed_for_next_level)
+				points_to_reach_next_level[level + 1] - points_to_reach_next_level[level]
+		var keys_on_new_power = $SecretPowerChecker.get_keys_on_secret_power(level)
 		level += 1
+		$UI.level_up(points_needed_for_next_level, keys_on_new_power)
 		_stop_foes()
 		$NextLevelTimer.start()
 

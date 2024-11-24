@@ -20,10 +20,13 @@ script = ExtResource("3_j86wd")
 wait_time = 5.0
 one_shot = true
 
-[node name="FirstSecretPower" parent="SecretPowerChecker" instance=ExtResource("4_pspov")]
+[node name="SecretPowers" type="Node2D" parent="SecretPowerChecker"]
+
+[node name="FirstSecretPower" parent="SecretPowerChecker/SecretPowers" instance=ExtResource("4_pspov")]
 keys_combination = Array[int]([0, 0, 0, 0, 0])
 
-[node name="SecondSecretPower" parent="SecretPowerChecker" instance=ExtResource("4_pspov")]
+[node name="SecondSecretPower" parent="SecretPowerChecker/SecretPowers" instance=ExtResource("4_pspov")]
+secret_power_id = 1
 keys_combination = Array[int]([1, 1, 0])
 
 [node name="Player" parent="." groups=["moving"] instance=ExtResource("1_vk8qf")]
