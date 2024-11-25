@@ -44,3 +44,16 @@ func stop():
 
 func move():
 	current_state = STATES.IDLE
+
+func secret_power(secret_power_id: SecretPowerChecker.SECRET_POWERS):
+	match secret_power_id:
+		SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
+			megapunch()
+
+func megapunch():
+	$AnimatedSprite2D.play("megapunch")
+	$PunchSound.play()
+	current_state == STATES.ATTACK
+	# Apply multi attack
+	for _i in range(0, 5):
+		get_tree().call_group("touching_player", "attacked")

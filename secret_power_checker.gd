@@ -46,7 +46,10 @@ func new_action_pressed(action: SecretPower.ACTION_KEYS):
 func power_triggered(secret_power: SECRET_POWERS):
 	if secret_power in secret_powers_found:
 		print("SECRET POWER TRIGGERED!!:", secret_power)
+		# Apply the secret power to all foes in screen
 		get_tree().call_group("touching_player", "secret_power", str(secret_power))
+		# Apply the secret power to player
+		$"../Player".secret_power(secret_power)
 		current_actions_sequence.clear()
 		accumulated_time_since_last_check = 0
 		$CooldownTimer.start()

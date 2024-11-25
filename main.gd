@@ -4,7 +4,7 @@ extends Node2D
 @export var life: int
 var points: int = 0
 var level: int = 0
-var points_to_reach_next_level: Array[Variant] = [1, 6, 10, 15, 30, 55]
+var points_to_reach_next_level: Array[Variant] = [1, 20, 50, 100, 200, 300]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
