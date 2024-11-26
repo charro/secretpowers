@@ -4,6 +4,8 @@ enum STATES { IDLE, ATTACK, STOP }
 
 var current_state = STATES.IDLE
 
+var active_secret_power
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -29,6 +31,7 @@ func get_input():
 
 		
 func _on_animation_finished() -> void:
+	active_secret_power = null
 	$AnimatedSprite2D.animation = "idle"
 	if current_state == STATES.ATTACK:
 		current_state = STATES.IDLE
@@ -46,14 +49,18 @@ func move():
 	current_state = STATES.IDLE
 
 func secret_power(secret_power_id: SecretPowerChecker.SECRET_POWERS):
+	active_secret_power = secret_power_id
 	match secret_power_id:
 		SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
 			megapunch()
 
 func megapunch():
+	# Apply multi attack
 	$AnimatedSprite2D.play("megapunch")
 	$PunchSound.play()
 	current_state == STATES.ATTACK
-	# Apply multi attack
-	for _i in range(0, 5):
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+	# Hit the enemies in each frame
+	if active_secret_power == SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
 		get_tree().call_group("touching_player", "attacked")

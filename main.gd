@@ -48,7 +48,7 @@ func _check_if_next_level():
 				points_to_reach_next_level[level + 1] - points_to_reach_next_level[level]
 		var keys_on_new_power = $SecretPowerChecker.get_keys_on_secret_power(level)
 		level += 1
-		$UI.level_up(points_needed_for_next_level, keys_on_new_power)
+		$UI.level_up(level, points_needed_for_next_level, keys_on_new_power)
 		_stop_foes()
 		$NextLevelTimer.start()
 

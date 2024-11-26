@@ -114,7 +114,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"kick",
-"speed": 24.0
+"speed": 22.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -123,16 +123,16 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hey72")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_n8s78")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_oeinm")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_as0uy")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_4gpj6")
 }, {
 "duration": 1.0,
@@ -141,9 +141,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7t0nt")
 }],
-"loop": true,
+"loop": false,
 "name": &"megapunch",
-"speed": 9.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -163,7 +163,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"punch",
-"speed": 24.0
+"speed": 22.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vn0iu"]
@@ -180,7 +180,8 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_eu857")
 animation = &"megapunch"
 autoplay = "idle"
-frame_progress = 0.0950145
+frame = 7
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(13, 8)
@@ -192,3 +193,4 @@ stream = ExtResource("3_g27ml")
 [connection signal="area_entered" from="." to="." method="_on_player_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_player_area_exited"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
