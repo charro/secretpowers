@@ -23,7 +23,7 @@ one_shot = true
 [node name="SecretPowers" type="Node2D" parent="SecretPowerChecker"]
 
 [node name="FirstSecretPower" parent="SecretPowerChecker/SecretPowers" instance=ExtResource("4_pspov")]
-keys_combination = Array[int]([0, 0, 0, 0, 0])
+keys_combination = Array[int]([0, 0, 0])
 
 [node name="SecondSecretPower" parent="SecretPowerChecker/SecretPowers" instance=ExtResource("4_pspov")]
 secret_power_id = 1
@@ -33,8 +33,9 @@ keys_combination = Array[int]([1, 1, 0])
 secret_power_id = 2
 keys_combination = Array[int]([2, 1, 0])
 
-[node name="Player" parent="." groups=["moving"] instance=ExtResource("1_vk8qf")]
+[node name="Player" parent="." node_paths=PackedStringArray("secret_power_checker") groups=["moving"] instance=ExtResource("1_vk8qf")]
 position = Vector2(64, 247)
+secret_power_checker = NodePath("../SecretPowerChecker")
 
 [node name="FoeSpawnTimer" type="Timer" parent="."]
 wait_time = 3.0

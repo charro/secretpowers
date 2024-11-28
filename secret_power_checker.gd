@@ -27,21 +27,28 @@ func _process(delta: float) -> void:
 	else:
 		accumulated_time_since_last_check += delta
 		
-		if accumulated_time_since_last_check > MAX_TIME_FOR_CHECK:
-			current_actions_sequence.clear()
-			accumulated_time_since_last_check = 0
+func check_if_secret_power_triggered(action: String):
+	# The combination of keys must happen within this time
+	if accumulated_time_since_last_check > MAX_TIME_FOR_CHECK:
+		current_actions_sequence.clear()
+		accumulated_time_since_last_check = 0
 			
-		if Input.is_action_just_pressed("first"):
-			new_action_pressed(SecretPower.ACTION_KEYS.FIRST)
-		elif Input.is_action_just_pressed("second"):
-			new_action_pressed(SecretPower.ACTION_KEYS.SECOND)
+	var action_key_pressed
+	if action == "first":
+		action_key_pressed = SecretPower.ACTION_KEYS.FIRST
+	elif action == "second":
+		action_key_pressed = SecretPower.ACTION_KEYS.SECOND
 		
+	return new_action_pressed(action_key_pressed)
+	
 func new_action_pressed(action: SecretPower.ACTION_KEYS):
 	current_actions_sequence.append(action)
 	for secret_power_index in range(0, secret_powers_unblocked):
 		var secret_power = secret_powers[secret_power_index]
 		if secret_power.matches(current_actions_sequence):
 			power_triggered(secret_power_index)
+			return secret_power_index
+	return null
 
 func power_triggered(secret_power: SECRET_POWERS):
 	if secret_power not in secret_powers_found:
@@ -52,8 +59,6 @@ func power_triggered(secret_power: SECRET_POWERS):
 	print("SECRET POWER TRIGGERED!!:", secret_power)
 	# Apply the secret power to all foes in screen
 	get_tree().call_group("touching_player", "secret_power", str(secret_power))
-	# Apply the secret power to player
-	$"../Player".secret_power(secret_power)
 	current_actions_sequence.clear()
 	accumulated_time_since_last_check = 0
 	$CooldownTimer.start()
