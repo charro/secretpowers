@@ -24,11 +24,10 @@ func hide_pop_ups():
 
 func update_cooldown_time(remaining_time):
 	var remaining_time_in_secs = int(remaining_time) + 1
-	$CooldownTime.visible = true
-	$CooldownTime.text = "POWERS COOLDOWN: " + str(remaining_time_in_secs)
+	$CooldownBar.value = remaining_time_in_secs
 
 func hide_cooldown():
-	$CooldownTime.visible = false
+	$CooldownBar.value = 0
 
 func new_secret_power_found(keys_to_trigger_power):
 	$SecretPowerFound.visible = true

@@ -1,7 +1,7 @@
 extends Node2D
 class_name SecretPowerChecker
 
-const MAX_TIME_FOR_CHECK: int = 1 #seconds
+const MAX_TIME_FOR_CHECK_POWERS: int = 1 #seconds
 enum SECRET_POWERS { MEGA_PUNCH = 0, KAMEAMEA = 1, TORNADO = 2 }
 var current_actions_sequence: Array[Variant] = []
 var accumulated_time_since_last_check: float   = 0
@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 		
 func check_if_secret_power_triggered(action: String):
 	# The combination of keys must happen within this time
-	if accumulated_time_since_last_check > MAX_TIME_FOR_CHECK:
+	if accumulated_time_since_last_check > MAX_TIME_FOR_CHECK_POWERS:
 		current_actions_sequence.clear()
 		accumulated_time_since_last_check = 0
 			
@@ -42,12 +42,13 @@ func check_if_secret_power_triggered(action: String):
 	return new_action_pressed(action_key_pressed)
 	
 func new_action_pressed(action: SecretPower.ACTION_KEYS):
-	current_actions_sequence.append(action)
-	for secret_power_index in range(0, secret_powers_unblocked):
-		var secret_power = secret_powers[secret_power_index]
-		if secret_power.matches(current_actions_sequence):
-			power_triggered(secret_power_index)
-			return secret_power_index
+	if not is_cooldown_active:
+		current_actions_sequence.append(action)
+		for secret_power_index in range(0, secret_powers_unblocked):
+			var secret_power = secret_powers[secret_power_index]
+			if secret_power.matches(current_actions_sequence):
+				power_triggered(secret_power_index)
+				return secret_power_index
 	return null
 
 func power_triggered(secret_power: SECRET_POWERS):

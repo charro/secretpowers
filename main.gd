@@ -2,7 +2,8 @@ extends Node2D
 
 @export var foe_scene: PackedScene
 @export var life: int
-var points: int = 0
+var accumulated_points: int = 0
+var points_in_this_level = 0
 var level: int = 0
 var points_to_reach_next_level: Array[Variant] = [1, 20, 50, 100, 200, 300]
 
@@ -27,12 +28,12 @@ func _spawn_new_enemy() -> void:
 	new_enemy.survived.connect(_on_enemy_survived)
 
 func _on_enemy_killed() -> void:
-	points = points + 1
-	$UI.set_points(points)
+	points_in_this_level = points_in_this_level + 1
+	$UI.set_points(points_in_this_level)
 	_check_if_next_level()
 
 func _on_enemy_survived() -> void:
-	life = life -1
+	life = life - 1
 	$UI.set_life(life)
 	_check_if_dead()
 	
@@ -42,7 +43,9 @@ func _check_if_dead():
 		$FoeSpawnTimer.stop()
 
 func _check_if_next_level():
-	if points >= points_to_reach_next_level[level]:
+	if accumulated_points + points_in_this_level >= points_to_reach_next_level[level]:
+		accumulated_points += points_in_this_level
+		points_in_this_level = 0
 		print("LEVEL UP!!")
 		var points_needed_for_next_level = \
 				points_to_reach_next_level[level + 1] - points_to_reach_next_level[level]
@@ -50,14 +53,19 @@ func _check_if_next_level():
 		level += 1
 		$UI.level_up(level, points_needed_for_next_level, keys_on_new_power)
 		_stop_foes()
+		_stop_player()
 		$NextLevelTimer.start()
 
 func _stop_foes():
 	get_tree().call_group("moving", "stop")
 	$FoeSpawnTimer.stop()
 
+func _stop_player():
+	$Player.stop()
+	
 func _start_next_level():
 	_move_foes()
+	$Player.move()
 	$UI.hide_pop_ups()
 	$SecretPowerChecker.new_power_unblocked()
 

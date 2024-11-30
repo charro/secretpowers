@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bv3852wpcjej4"]
+[gd_scene load_steps=14 format=3 uid="uid://bv3852wpcjej4"]
 
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_up53w"]
 [ext_resource type="PackedScene" uid="uid://de3qgis6yb3ky" path="res://ui/first_key.tscn" id="2_khenw"]
@@ -17,6 +17,11 @@ bg_color = Color(1, 0.333333, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fsm5t"]
 bg_color = Color(0.333333, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8r52k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2vy4o"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -61,6 +66,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_fsm5t")
 max_value = 10.0
 step = -1.0
 value = 10.0
+show_percentage = false
+
+[node name="CooldownBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 31.0
+offset_right = 632.0
+offset_bottom = 61.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_8r52k")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2vy4o")
+max_value = 5.0
 show_percentage = false
 
 [node name="NewSecretPowerPanel" type="Panel" parent="."]
@@ -162,15 +178,6 @@ third_key = ExtResource("4_mtd00")
 fourth_key = ExtResource("5_jp4dj")
 plus_sign = ExtResource("6_x8ijh")
 
-[node name="CooldownTime" type="Label" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 444.0
-offset_top = 7.0
-offset_right = 628.0
-offset_bottom = 30.0
-text = "POWER COOLDOWN: 5"
-
 [node name="PowerFoundTimer" type="Timer" parent="."]
 wait_time = 5.0
 
@@ -181,6 +188,14 @@ offset_top = 10.0
 offset_right = 65.0
 offset_bottom = 36.0
 text = "Life"
+
+[node name="LifeLabel" type="Label" parent="LifeLabel"]
+offset_left = 532.0
+offset_top = -5.0
+offset_right = 610.0
+offset_bottom = 21.0
+text = "Cooldown
+"
 
 [node name="LevelLabel" type="Label" parent="."]
 layout_mode = 0

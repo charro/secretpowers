@@ -4,6 +4,7 @@ enum STATES { IDLE, ATTACK, SECRET_POWER, STOP }
 var current_state = STATES.IDLE
 var active_secret_power
 @export var secret_power_checker: SecretPowerChecker
+var level = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,7 +12,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if current_state != STATES.SECRET_POWER:
+	if current_state not in [STATES.STOP, STATES.SECRET_POWER]:
 		get_input()
 	
 func get_input():
@@ -23,7 +24,7 @@ func get_input():
 		print("Playing punch")
 		$PunchSound.play()
 		pressed_attack_key = true
-	elif Input.is_action_just_pressed("second"):
+	elif Input.is_action_just_pressed("second") and level > 1:
 		action_pressed = "second"
 		$AnimatedSprite2D.play("kick")
 		print("Playing kick")
@@ -52,6 +53,7 @@ func _on_player_area_exited(enemy: Area2D) -> void:
 
 func stop():
 	current_state = STATES.STOP
+	$AnimatedSprite2D.stop()
 
 func move():
 	current_state = STATES.IDLE
