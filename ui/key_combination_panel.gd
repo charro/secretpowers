@@ -14,3 +14,6 @@ func show_keys_combination(keys):
 	$Keys/KeysContainer.clean()
 	for key in keys:
 		$Keys/KeysContainer.add_key(key)
+
+func set_custom_label_text(new_text):
+	$CustomLabel.text = new_text

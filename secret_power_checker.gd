@@ -55,7 +55,7 @@ func power_triggered(secret_power: SECRET_POWERS):
 	if secret_power not in secret_powers_found:
 		print("Secret Power Discovered!!")
 		secret_powers_found.append(secret_power)
-		$"../UI".new_secret_power_found(current_actions_sequence)
+		$"../UI".new_secret_power_found(secret_power, current_actions_sequence)
 		
 	print("SECRET POWER TRIGGERED!!:", secret_power)
 	# Apply the secret power to all foes in screen

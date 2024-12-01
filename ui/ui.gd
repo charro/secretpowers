@@ -29,9 +29,19 @@ func update_cooldown_time(remaining_time):
 func hide_cooldown():
 	$CooldownBar.value = 0
 
-func new_secret_power_found(keys_to_trigger_power):
+func new_secret_power_found(secret_power: SecretPowerChecker.SECRET_POWERS, keys_to_trigger_power):
+	var secret_power_visible_name
+	match secret_power:
+		SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
+			secret_power_visible_name = "Multi Punch"
+		SecretPowerChecker.SECRET_POWERS.KAMEAMEA:
+			secret_power_visible_name = "Kame Hame Ha"
+		SecretPowerChecker.SECRET_POWERS.TORNADO:
+			secret_power_visible_name = "Tornado"
+			
 	$SecretPowerFound.visible = true
 	$SecretPowerFound.show_keys_combination(keys_to_trigger_power)
+	$SecretPowerFound.set_custom_label_text(secret_power_visible_name)
 	$PowerFoundTimer.start()
 
 func level_up(new_level: int, new_max_points: int, keys_for_unblocked_power):

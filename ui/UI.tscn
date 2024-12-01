@@ -102,6 +102,18 @@ Find it  combining
 these keys"
 horizontal_alignment = 1
 
+[node name="CustomLabel" type="Label" parent="NewSecretPowerPanel"]
+visible = false
+offset_left = 58.0
+offset_top = 40.0
+offset_right = 441.0
+offset_bottom = 87.0
+theme_override_colors/font_color = Color(1, 0.333333, 1, 1)
+theme_override_font_sizes/font_size = 25
+text = "KAMEHAMEHA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Keys" type="ColorRect" parent="NewSecretPowerPanel"]
 layout_mode = 0
 offset_left = 18.0
@@ -133,29 +145,41 @@ plus_sign = ExtResource("6_x8ijh")
 [node name="SecretPowerFound" type="Panel" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 76.0
-offset_top = 55.0
-offset_right = 572.0
-offset_bottom = 234.0
+offset_left = 89.0
+offset_top = 72.0
+offset_right = 585.0
+offset_bottom = 251.0
 script = ExtResource("6_bt2mh")
 
 [node name="NewSecretPower" type="Label" parent="SecretPowerFound"]
 layout_mode = 0
-offset_left = 63.0
-offset_top = 24.0
-offset_right = 430.0
-offset_bottom = 71.0
+offset_left = 62.0
+offset_top = -5.0
+offset_right = 437.0
+offset_bottom = 42.0
 theme_override_colors/font_color = Color(0.333333, 1, 1, 1)
 theme_override_font_sizes/font_size = 30
 text = "SECRET POWER FOUND !!!!"
 horizontal_alignment = 1
 
+[node name="CustomLabel" type="Label" parent="SecretPowerFound"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 40.0
+offset_right = 441.0
+offset_bottom = 87.0
+theme_override_colors/font_color = Color(1, 0.333333, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "KAMEHAMEHA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Keys" type="ColorRect" parent="SecretPowerFound"]
 layout_mode = 0
-offset_left = 20.0
-offset_top = 93.0
-offset_right = 484.0
-offset_bottom = 160.0
+offset_left = 18.0
+offset_top = 95.0
+offset_right = 482.0
+offset_bottom = 162.0
 color = Color(0.333333, 1, 1, 1)
 
 [node name="KeysContainer" type="HBoxContainer" parent="SecretPowerFound/Keys"]
@@ -190,6 +214,7 @@ offset_bottom = 36.0
 text = "Life"
 
 [node name="LifeLabel" type="Label" parent="LifeLabel"]
+layout_mode = 0
 offset_left = 532.0
 offset_top = -5.0
 offset_right = 610.0
