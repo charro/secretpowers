@@ -60,6 +60,7 @@ func power_triggered(secret_power: SECRET_POWERS):
 		secret_powers_found.append(secret_power)
 		$"../UI".new_secret_power_found(secret_power, current_actions_sequence)
 		new_secret_power_found.emit()
+		current_actions_sequence.clear()
 		
 	# Apply the secret power to all foes in screen
 	get_tree().call_group("touching_player", "secret_power", str(secret_power))

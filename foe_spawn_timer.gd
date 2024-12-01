@@ -13,4 +13,4 @@ func _process(delta: float) -> void:
 
 
 func _on_timeout() -> void:
-	wait_time = randf_range(0, max_wait_time)
+	wait_time = clampf(randf_range(0, max_wait_time), 0.3, 7)

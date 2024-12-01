@@ -14,11 +14,16 @@ func set_points(points: int):
 func set_life(life: int):
 	$LifeBar.value = life
 
-func show_dead():
-	$GameOver.visible = true
+func game_over():
+	$GameResult.text = "GAME OVER"
+	$GameResult.visible = true
+	
+func game_won():
+	$GameResult.text = "CONGRATS !!\n YOU WON!!"
+	$GameResult.visible = true
 
 func hide_pop_ups():
-	$GameOver.visible = false
+	$GameResult.visible = false
 	$NewSecretPowerPanel.visible = false
 	$SecretPowerFound.visible = false
 

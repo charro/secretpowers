@@ -13,7 +13,7 @@
 script = ExtResource("1_m8662")
 foe_scene = ExtResource("2_kqppx")
 kameamea_scene = ExtResource("3_16e0g")
-life = 10
+life = 100
 
 [node name="SecretPowerChecker" type="Node2D" parent="."]
 script = ExtResource("3_j86wd")
@@ -33,7 +33,7 @@ keys_combination = Array[int]([1, 1, 0])
 
 [node name="ThirdSecretPower" parent="SecretPowerChecker/SecretPowers" instance=ExtResource("4_pspov")]
 secret_power_id = 2
-keys_combination = Array[int]([2, 2, 2])
+keys_combination = Array[int]([2, 1, 2])
 
 [node name="Player" parent="." node_paths=PackedStringArray("secret_power_checker") groups=["moving"] instance=ExtResource("1_vk8qf")]
 position = Vector2(64, 247)
