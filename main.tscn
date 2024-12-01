@@ -35,6 +35,14 @@ keys_combination = Array[int]([1, 1, 0])
 secret_power_id = 2
 keys_combination = Array[int]([2, 1, 2])
 
+[node name="ThirdSecretPower" parent="SecretPowerChecker/SecretPowers/ThirdSecretPower" instance=ExtResource("4_pspov")]
+secret_power_id = 2
+keys_combination = Array[int]([2, 1, 2])
+
+[node name="ThirdSecretPower" parent="SecretPowerChecker/SecretPowers/ThirdSecretPower/ThirdSecretPower" instance=ExtResource("4_pspov")]
+secret_power_id = 2
+keys_combination = Array[int]([2, 1, 2])
+
 [node name="Player" parent="." node_paths=PackedStringArray("secret_power_checker") groups=["moving"] instance=ExtResource("1_vk8qf")]
 position = Vector2(64, 247)
 secret_power_checker = NodePath("../SecretPowerChecker")

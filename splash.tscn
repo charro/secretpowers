@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnwa5wajfbu2"]
+
+[ext_resource type="Script" path="res://splash.gd" id="1_43gp4"]
+[ext_resource type="Texture2D" uid="uid://cahf5sragmqco" path="res://splash.png" id="1_cvmkh"]
+[ext_resource type="Texture2D" uid="uid://bym8vpvo0xcm1" path="res://ui/Keyboard Extras.png" id="2_xlc2y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfo63"]
+atlas = ExtResource("2_xlc2y")
+region = Rect2(4, 34, 24, 12)
+
+[node name="Splash" type="Node2D"]
+script = ExtResource("1_43gp4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 321.0
+color = Color(0, 0, 0, 1)
+
+[node name="Splash" type="Sprite2D" parent="."]
+position = Vector2(322, 135)
+texture = ExtResource("1_cvmkh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(291, 283)
+scale = Vector2(1.70531, 1.74312)
+texture = SubResource("AtlasTexture_bfo63")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 323.0
+offset_top = 270.0
+offset_right = 380.0
+offset_bottom = 293.0
+text = "PUNCH"
+horizontal_alignment = 1
+vertical_alignment = 1

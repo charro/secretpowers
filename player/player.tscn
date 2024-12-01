@@ -1,10 +1,13 @@
-[gd_scene load_steps=37 format=3 uid="uid://nowb747qdxcw"]
+[gd_scene load_steps=40 format=3 uid="uid://nowb747qdxcw"]
 
 [ext_resource type="Texture2D" uid="uid://b08ovkbl4wm6r" path="res://player/prota.png" id="2_0m850"]
 [ext_resource type="Script" path="res://player/player.gd" id="2_2h80n"]
 [ext_resource type="AudioStream" uid="uid://birvxqnn3h8fw" path="res://sound/punch-short.mp3" id="3_g27ml"]
 [ext_resource type="Texture2D" uid="uid://dr0dv4278sodf" path="res://secret_powers/prota_megapunch.png" id="3_m1xas"]
 [ext_resource type="Texture2D" uid="uid://bjrxx03layhta" path="res://secret_powers/megapunch.png" id="3_nrv0k"]
+[ext_resource type="AudioStream" uid="uid://cwpr117vq1t2t" path="res://sound/kick-183936.mp3" id="6_a24hu"]
+[ext_resource type="AudioStream" uid="uid://cjb3ao8g5hpt3" path="res://sound/ayuken.mp3" id="7_lelr7"]
+[ext_resource type="AudioStream" uid="uid://cq2guam4tng33" path="res://sound/megapunch.mp3" id="8_dop6w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_at3uf"]
 atlas = ExtResource("2_0m850")
@@ -270,6 +273,15 @@ shape = SubResource("CapsuleShape2D_vn0iu")
 
 [node name="PunchSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_g27ml")
+
+[node name="KickSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_a24hu")
+
+[node name="AyukenSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_lelr7")
+
+[node name="MegaPunchSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_dop6w")
 
 [connection signal="area_entered" from="." to="." method="_on_player_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_player_area_exited"]

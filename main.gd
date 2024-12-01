@@ -6,10 +6,12 @@ extends Node2D
 var accumulated_points: int = 0
 var points_in_this_level = 0
 var level: int = 0
-var points_to_reach_next_level: Array[Variant] = [5, 200, 400, 800]
+var points_to_reach_next_level: Array[Variant] = [5, 20, 40, 80]
 
 var foe_sprites = preload("res://foe/sprite_frames/foe.tres")
 var elplumas_sprites = preload("res://foe/sprite_frames/elplumas.tres")
+var tortugato_sprites = preload("res://foe/sprite_frames/tortugato.tres")
+var cabezon_sprites = preload("res://foe/sprite_frames/cabezon.tres")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -113,12 +115,39 @@ func _on_foe_megapunched(foe: Foe):
 	tween.tween_property(foe, "position", $FoesSpawningPoint.position, 0.2)
 
 func _create_foe_for_current_level() -> Foe :
-	var foe: Foe = foe_scene.instantiate()
+	var foe: Foe = _spawn_cabezon()
 	match level:
 		1:
-			foe.set_foe_values(15, 250, elplumas_sprites)
+			if randf_range(0, 1) > 0.6:
+				foe = _spawn_elplumas()
 		2:
-			foe.set_foe_values(40, 150, elplumas_sprites)
+			var chances = randf_range(0, 1)
+			if chances > 0.7:
+				foe = _spawn_tortugato()
+			elif chances > 0.3:
+				foe = _spawn_elplumas()
 		3:
-			foe.set_foe_values(80, 100, elplumas_sprites)
+			var chances = randf_range(0, 1)
+			if chances > 0.5:
+				foe = _spawn_cabezon()
+			elif chances > 0.2:
+				foe = _spawn_tortugato()
+			else:
+				foe = _spawn_elplumas()
+	return foe
+
+func _spawn_elplumas():
+	var foe: Foe = foe_scene.instantiate()
+	foe.set_foe_values(15, 250, elplumas_sprites)
+	return foe
+	
+func _spawn_tortugato():
+	var foe: Foe = foe_scene.instantiate()
+	foe.set_foe_values(40, 150, tortugato_sprites)
+	return foe
+
+func _spawn_cabezon():
+	var foe: Foe = foe_scene.instantiate()
+	foe.set_foe_values(100, 80, cabezon_sprites)
+	foe.position.y = foe.position.y + 40
 	return foe

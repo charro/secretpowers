@@ -26,6 +26,7 @@ func get_input():
 	elif Input.is_action_just_pressed("second") and level > 1:
 		action_pressed = "second"
 		$AnimatedSprite2D.play("kick")
+		$KickSound.play()
 		pressed_attack_key = true
 	elif Input.is_action_just_pressed("third") and level > 2:
 		action_pressed = "third"
@@ -59,6 +60,7 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 	# Hit the enemies in each frame if MultiPunching
 	if active_secret_power == SecretPowerChecker.SECRET_POWERS.MULTI_PUNCH:
 		get_tree().call_group("touching_player", "secret_power", active_secret_power)
+		$PunchSound.play()
 
 
 func _on_secret_power_checker_secret_power_triggered(secret_power_id: SecretPowerChecker.SECRET_POWERS) -> void:
@@ -67,6 +69,8 @@ func _on_secret_power_checker_secret_power_triggered(secret_power_id: SecretPowe
 	match secret_power_id:
 		SecretPowerChecker.SECRET_POWERS.MULTI_PUNCH:
 			multipunch()
+		SecretPowerChecker.SECRET_POWERS.KAMEAMEA:
+			$AyukenSound.play()
 		SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
 			megapunch()
 
@@ -76,5 +80,5 @@ func multipunch():
 
 func megapunch():
 	$AnimatedSprite2D.play("megapunch")
-	$PunchSound.play()
+	$MegaPunchSound.play()
 	get_tree().call_group("touching_player", "secret_power", active_secret_power)
