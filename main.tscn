@@ -33,7 +33,7 @@ keys_combination = Array[int]([1, 1, 0])
 
 [node name="ThirdSecretPower" parent="SecretPowerChecker/SecretPowers" instance=ExtResource("4_pspov")]
 secret_power_id = 2
-keys_combination = Array[int]([2, 1, 0])
+keys_combination = Array[int]([2, 2, 2])
 
 [node name="Player" parent="." node_paths=PackedStringArray("secret_power_checker") groups=["moving"] instance=ExtResource("1_vk8qf")]
 position = Vector2(64, 247)
@@ -50,16 +50,20 @@ max_wait_time = 3
 [node name="FoesSpawningPoint" type="Node2D" parent="."]
 position = Vector2(586, 281)
 
-[node name="NextLevelTimer" type="Timer" parent="."]
+[node name="StopTheWorldTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 
 [node name="PowerSpawningPoint" type="Node2D" parent="."]
 position = Vector2(125, 280)
 
+[node name="MegapunchTopPoint" type="Node2D" parent="."]
+position = Vector2(445, 46)
+
+[connection signal="new_secret_power_found" from="SecretPowerChecker" to="." method="_on_secret_power_checker_new_secret_power_found"]
 [connection signal="secret_power_triggered" from="SecretPowerChecker" to="." method="_on_secret_power_checker_secret_power_triggered"]
 [connection signal="secret_power_triggered" from="SecretPowerChecker" to="Player" method="_on_secret_power_checker_secret_power_triggered"]
 [connection signal="timeout" from="SecretPowerChecker/CooldownTimer" to="SecretPowerChecker" method="_on_cooldown_timer_timeout"]
 [connection signal="timeout" from="FoeSpawnTimer" to="." method="_on_foe_spawn_timer_timeout"]
 [connection signal="timeout" from="FoeSpawnTimer" to="FoeSpawnTimer" method="_on_timeout"]
-[connection signal="timeout" from="NextLevelTimer" to="." method="_start_next_level"]
+[connection signal="timeout" from="StopTheWorldTimer" to="." method="_on_stop_the_world_timer_timeout"]

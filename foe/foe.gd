@@ -13,6 +13,7 @@ var current_state
 
 signal killed
 signal survived
+signal megapunched(this: Foe)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -50,7 +51,9 @@ func check_if_survived():
 
 func secret_power(power: SecretPowerChecker.SECRET_POWERS):
 	match power:
-		SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
-			queue_free()
+		SecretPowerChecker.SECRET_POWERS.MULTI_PUNCH:
+			attacked()
 		SecretPowerChecker.SECRET_POWERS.KAMEAMEA:
-			queue_free()
+			attacked()
+		SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
+			megapunched.emit(self)

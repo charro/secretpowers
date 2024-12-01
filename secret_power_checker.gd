@@ -2,7 +2,7 @@ extends Node2D
 class_name SecretPowerChecker
 
 const MAX_TIME_FOR_CHECK_POWERS: int = 1 #seconds
-enum SECRET_POWERS { MEGA_PUNCH = 0, KAMEAMEA = 1, TORNADO = 2 }
+enum SECRET_POWERS { MULTI_PUNCH = 0, KAMEAMEA = 1, MEGA_PUNCH = 2 }
 var current_actions_sequence: Array[Variant] = []
 var accumulated_time_since_last_check: float   = 0
 var is_cooldown_active: bool = false
@@ -11,11 +11,12 @@ var secret_powers_unblocked: int        = 0
 var secret_powers_found: Array[Variant] = []
 
 signal secret_power_triggered(secret_power: SECRET_POWERS)
+signal new_secret_power_found
 
 @onready var secret_powers: Dictionary = {
-	SECRET_POWERS.MEGA_PUNCH: $SecretPowers/FirstSecretPower,
+	SECRET_POWERS.MULTI_PUNCH: $SecretPowers/FirstSecretPower,
 	SECRET_POWERS.KAMEAMEA: $SecretPowers/SecondSecretPower,
-	SECRET_POWERS.TORNADO: $SecretPowers/ThirdSecretPower
+	SECRET_POWERS.MEGA_PUNCH: $SecretPowers/ThirdSecretPower
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -40,8 +41,10 @@ func check_if_secret_power_triggered(action: String):
 		action_key_pressed = SecretPower.ACTION_KEYS.FIRST
 	elif action == "second":
 		action_key_pressed = SecretPower.ACTION_KEYS.SECOND
+	elif action == "third":
+		action_key_pressed = SecretPower.ACTION_KEYS.THIRD
 		
-	return new_action_pressed(action_key_pressed)
+	new_action_pressed(action_key_pressed)
 	
 func new_action_pressed(action: SecretPower.ACTION_KEYS):
 	if not is_cooldown_active:
@@ -56,8 +59,8 @@ func power_triggered(secret_power: SECRET_POWERS):
 		print("Secret Power Discovered!!")
 		secret_powers_found.append(secret_power)
 		$"../UI".new_secret_power_found(secret_power, current_actions_sequence)
+		new_secret_power_found.emit()
 		
-	print("SECRET POWER TRIGGERED!!:", secret_power)
 	# Apply the secret power to all foes in screen
 	get_tree().call_group("touching_player", "secret_power", str(secret_power))
 	current_actions_sequence.clear()

@@ -11,29 +11,29 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if current_state not in [STATES.STOP, STATES.SECRET_POWER]:
 		get_input()
-	
+
 func get_input():
 	var pressed_attack_key = false
-	var action_pressed = null
+	var action_pressed     = null
 	if Input.is_action_just_pressed("first"):
 		action_pressed = "first"
 		$AnimatedSprite2D.play("punch")
-		print("Playing punch")
 		$PunchSound.play()
 		pressed_attack_key = true
 	elif Input.is_action_just_pressed("second") and level > 1:
 		action_pressed = "second"
 		$AnimatedSprite2D.play("kick")
-		print("Playing kick")
 		pressed_attack_key = true
+	elif Input.is_action_just_pressed("third") and level > 2:
+		action_pressed = "third"
 
 	if pressed_attack_key:
 		current_state = STATES.ATTACK
 		get_tree().call_group("touching_player", "attacked")
-	
+		
 	if action_pressed:
 		secret_power_checker.check_if_secret_power_triggered(action_pressed)
 			
@@ -56,21 +56,25 @@ func move():
 	current_state = STATES.IDLE
 
 func _on_animated_sprite_2d_frame_changed() -> void:
-	# Hit the enemies in each frame
-	if active_secret_power == SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
-		get_tree().call_group("touching_player", "attacked")
+	# Hit the enemies in each frame if MultiPunching
+	if active_secret_power == SecretPowerChecker.SECRET_POWERS.MULTI_PUNCH:
+		get_tree().call_group("touching_player", "secret_power", active_secret_power)
 
 
 func _on_secret_power_checker_secret_power_triggered(secret_power_id: SecretPowerChecker.SECRET_POWERS) -> void:
 	active_secret_power = secret_power_id
 	current_state = STATES.SECRET_POWER
 	match secret_power_id:
+		SecretPowerChecker.SECRET_POWERS.MULTI_PUNCH:
+			multipunch()
 		SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
 			megapunch()
 
-func megapunch():
-	# Apply multi attack
-	$AnimatedSprite2D.play("megapunch")
+func multipunch():
+	$AnimatedSprite2D.play("multipunch")
 	$PunchSound.play()
 
-	
+func megapunch():
+	$AnimatedSprite2D.play("megapunch")
+	$PunchSound.play()
+	get_tree().call_group("touching_player", "secret_power", active_secret_power)

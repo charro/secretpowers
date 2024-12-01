@@ -32,12 +32,12 @@ func hide_cooldown():
 func new_secret_power_found(secret_power: SecretPowerChecker.SECRET_POWERS, keys_to_trigger_power):
 	var secret_power_visible_name
 	match secret_power:
-		SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
+		SecretPowerChecker.SECRET_POWERS.MULTI_PUNCH:
 			secret_power_visible_name = "Multi Punch"
 		SecretPowerChecker.SECRET_POWERS.KAMEAMEA:
 			secret_power_visible_name = "Kame Hame Ha"
-		SecretPowerChecker.SECRET_POWERS.TORNADO:
-			secret_power_visible_name = "Tornado"
+		SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
+			secret_power_visible_name = "Mega Punch"
 			
 	$SecretPowerFound.visible = true
 	$SecretPowerFound.show_keys_combination(keys_to_trigger_power)
