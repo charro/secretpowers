@@ -6,7 +6,7 @@ extends Node2D
 var accumulated_points: int = 0
 var points_in_this_level = 0
 var level: int = 0
-var points_to_reach_next_level: Array[Variant] = [5, 20, 40, 80]
+var points_to_reach_next_level: Array[Variant] = [100, 300, 500, 1200]
 
 var foe_sprites = preload("res://foe/sprite_frames/foe.tres")
 var elplumas_sprites = preload("res://foe/sprite_frames/elplumas.tres")
@@ -26,7 +26,6 @@ func _on_foe_spawn_timer_timeout() -> void:
 
 func _spawn_new_enemy() -> void:
 	var new_enemy = _create_foe_for_current_level()
-	new_enemy.position = $FoesSpawningPoint.position
 	add_child(new_enemy)
 	new_enemy.add_to_group("foes")
 	new_enemy.add_to_group("moving")
@@ -47,6 +46,7 @@ func _on_enemy_survived(foe: Foe) -> void:
 func _check_if_dead():
 	if life < 1:
 		$UI.game_over()
+		$GameOverSound.play()
 		stop_the_world()
 		$FoeSpawnTimer.stop()
 
@@ -60,6 +60,7 @@ func _level_up():
 	if level == points_to_reach_next_level.size() - 1:
 		stop_the_world()
 		$UI.game_won()
+		$YouWinSound.play()
 	else: 
 		accumulated_points += points_in_this_level
 		points_in_this_level = 0
@@ -112,10 +113,13 @@ func _on_secret_power_checker_new_secret_power_found() -> void:
 func _on_foe_megapunched(foe: Foe):
 	var tween = create_tween()
 	tween.tween_property(foe, "position", $MegapunchTopPoint.position, 0.5)
-	tween.tween_property(foe, "position", $FoesSpawningPoint.position, 0.2)
+	var final_position = $FoesSpawningPoint.position
+	if foe.type == "cabezon":
+		final_position.y = final_position.y - 80
+	tween.tween_property(foe, "position", final_position, 0.2)
 
 func _create_foe_for_current_level() -> Foe :
-	var foe: Foe = _spawn_cabezon()
+	var foe = _spawn_foe()
 	match level:
 		1:
 			if randf_range(0, 1) > 0.6:
@@ -136,18 +140,27 @@ func _create_foe_for_current_level() -> Foe :
 				foe = _spawn_elplumas()
 	return foe
 
+func _spawn_foe():
+	var foe: Foe = foe_scene.instantiate()
+	foe.position = $FoesSpawningPoint.position
+	return foe
+	
 func _spawn_elplumas():
 	var foe: Foe = foe_scene.instantiate()
-	foe.set_foe_values(15, 250, elplumas_sprites)
+	foe.position = $FoesSpawningPoint.position
+	foe.set_foe_values("elplumas", 15, 250, elplumas_sprites)
 	return foe
 	
 func _spawn_tortugato():
 	var foe: Foe = foe_scene.instantiate()
-	foe.set_foe_values(40, 150, tortugato_sprites)
+	foe.position = $FoesSpawningPoint.position
+	foe.set_foe_values("tortugator", 40, 150, tortugato_sprites)
 	return foe
 
 func _spawn_cabezon():
 	var foe: Foe = foe_scene.instantiate()
-	foe.set_foe_values(100, 80, cabezon_sprites)
-	foe.position.y = foe.position.y + 40
+	foe.position = $FoesSpawningPoint.position
+	foe.set_foe_values("cabezon", 100, 80, cabezon_sprites)
+	# Offset for this sprite as its much bigger
+	foe.position.y = foe.position.y - 80
 	return foe

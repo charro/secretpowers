@@ -4,6 +4,7 @@ class_name Foe
 @export var max_velocity: float = 200
 @export var max_life: int = 5
 
+var type = "foe"
 var velocity: float
 var life: int
 
@@ -58,7 +59,8 @@ func secret_power(power: SecretPowerChecker.SECRET_POWERS):
 		SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
 			megapunched.emit(self)
 
-func set_foe_values(new_max_life: int, new_max_velocity: int, sprite_frames: SpriteFrames):
+func set_foe_values(new_type: String, new_max_life: int, new_max_velocity: int, sprite_frames: SpriteFrames):
+	type = new_type
 	max_life = new_max_life
 	max_velocity = new_max_velocity
 	$AnimatedSprite2D.sprite_frames = sprite_frames

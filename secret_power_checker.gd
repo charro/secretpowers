@@ -61,6 +61,7 @@ func power_triggered(secret_power: SECRET_POWERS):
 		$"../UI".new_secret_power_found(secret_power, current_actions_sequence)
 		new_secret_power_found.emit()
 		current_actions_sequence.clear()
+		$"../CelebrationSound".play()
 		
 	# Apply the secret power to all foes in screen
 	get_tree().call_group("touching_player", "secret_power", str(secret_power))
@@ -77,6 +78,7 @@ func _on_cooldown_timer_timeout() -> void:
 func new_power_unblocked():
 	secret_powers_unblocked = \
 		clampi(secret_powers_unblocked + 1, 0, len(SECRET_POWERS))
+	$"../CelebrationSound".play()
 
 func get_keys_on_secret_power(level: int):
 	if level < len(SECRET_POWERS) :

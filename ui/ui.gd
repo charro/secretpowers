@@ -15,11 +15,11 @@ func set_life(life: int):
 	$LifeBar.value = life
 
 func game_over():
-	$GameResult.text = "GAME OVER"
+	$GameResult/Label.text = "GAME OVER"
 	$GameResult.visible = true
 	
 func game_won():
-	$GameResult.text = "CONGRATS !!\n YOU WON!!"
+	$GameResult/Label.text = "CONGRATS !!\n YOU WON!!"
 	$GameResult.visible = true
 
 func hide_pop_ups():

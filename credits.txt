@@ -1,7 +1,10 @@
-Punch effect
+Sound effect
 Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=37333">freesound_community</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=37333">Pixabay</a>
 Sound Effect by <a href="https://pixabay.com/users/muhammad_ayman-22306794/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=95294">Muhammad Ayman</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=95294">Pixabay</a>
 Sound Effect by <a href="https://pixabay.com/users/ayudharamusic-41334680/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=183936">Roshan Rai</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=183936">Pixabay</a>
+Sound Effect by <a href="https://pixabay.com/users/floraphonic-38928062/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=183973">floraphonic</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=183973">Pixabay</a>
+Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=89697">freesound_community</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=89697">Pixabay</a>
+Sound Effect by <a href="https://pixabay.com/users/floraphonic-38928062/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=183948">floraphonic</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=183948">Pixabay</a>
 
-Pixel Keys
+Pixel Key Sprites
 https://dreammix.itch.io/keyboard-keys-for-ui

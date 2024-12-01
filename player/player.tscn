@@ -276,12 +276,15 @@ stream = ExtResource("3_g27ml")
 
 [node name="KickSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_a24hu")
+volume_db = -13.351
 
 [node name="AyukenSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_lelr7")
+volume_db = 14.055
 
 [node name="MegaPunchSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_dop6w")
+volume_db = 11.946
 
 [connection signal="area_entered" from="." to="." method="_on_player_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_player_area_exited"]

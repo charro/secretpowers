@@ -32,19 +32,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_up53w")
 
-[node name="GameResult" type="Label" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 105.0
-offset_top = 67.0
-offset_right = 554.0
-offset_bottom = 273.0
-theme_override_colors/font_color = Color(1, 0.333333, 1, 1)
-theme_override_font_sizes/font_size = 50
-text = "GAME OVER"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 0
 offset_left = 58.0
@@ -227,5 +214,26 @@ offset_top = 42.0
 offset_right = 64.0
 offset_bottom = 68.0
 text = "Lvl 1"
+
+[node name="GameResult" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 93.0
+offset_top = 84.0
+offset_right = 551.0
+offset_bottom = 277.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="GameResult"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -5.0
+offset_right = 455.0
+offset_bottom = 201.0
+theme_override_colors/font_color = Color(1, 0.333333, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="timeout" from="PowerFoundTimer" to="." method="_on_power_found_timer_timeout"]
