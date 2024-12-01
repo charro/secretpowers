@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://cbtymv7qj76gn"]
+
+[ext_resource type="Script" path="res://secret_powers/kamehameha.gd" id="1_5kwa1"]
+[ext_resource type="Texture2D" uid="uid://dve5m71yng0bl" path="res://secret_powers/kamehameha.png" id="1_37v0p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gue7d"]
+atlas = ExtResource("1_37v0p")
+region = Rect2(0, 0, 29, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0knsk"]
+atlas = ExtResource("1_37v0p")
+region = Rect2(29, 0, 29, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0wyp"]
+atlas = ExtResource("1_37v0p")
+region = Rect2(58, 0, 29, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rrqm2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gue7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0knsk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0wyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0knsk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0wyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0wyp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 14.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3lrr2"]
+radius = 13.1529
+
+[node name="Kamehameha" type="Area2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_5kwa1")
+max_velocity = 350.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rrqm2")
+autoplay = "default"
+frame_progress = 0.132034
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3lrr2")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

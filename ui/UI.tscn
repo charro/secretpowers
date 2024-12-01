@@ -70,10 +70,10 @@ show_percentage = false
 
 [node name="CooldownBar" type="ProgressBar" parent="."]
 layout_mode = 0
-offset_left = 512.0
+offset_left = 546.0
 offset_top = 31.0
-offset_right = 632.0
-offset_bottom = 61.0
+offset_right = 621.0
+offset_bottom = 46.0
 theme_override_styles/background = SubResource("StyleBoxEmpty_8r52k")
 theme_override_styles/fill = SubResource("StyleBoxFlat_2vy4o")
 max_value = 5.0

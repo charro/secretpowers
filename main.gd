@@ -1,11 +1,12 @@
 extends Node2D
 
 @export var foe_scene: PackedScene
+@export var kameamea_scene: PackedScene
 @export var life: int
 var accumulated_points: int = 0
 var points_in_this_level = 0
 var level: int = 0
-var points_to_reach_next_level: Array[Variant] = [1, 20, 50, 100, 200, 300]
+var points_to_reach_next_level: Array[Variant] = [1, 5, 50, 100, 200, 300]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -51,6 +52,7 @@ func _check_if_next_level():
 				points_to_reach_next_level[level + 1] - points_to_reach_next_level[level]
 		var keys_on_new_power = $SecretPowerChecker.get_keys_on_secret_power(level)
 		level += 1
+		$Player.level = level
 		$UI.level_up(level, points_needed_for_next_level, keys_on_new_power)
 		_stop_foes()
 		_stop_player()
@@ -72,3 +74,10 @@ func _start_next_level():
 func _move_foes():
 	get_tree().call_group("moving", "move")
 	$FoeSpawnTimer.start()
+
+func _on_secret_power_checker_secret_power_triggered(secret_power: SecretPowerChecker.SECRET_POWERS) -> void:
+	match secret_power:
+		SecretPowerChecker.SECRET_POWERS.KAMEAMEA:
+			var kameamea = kameamea_scene.instantiate()
+			kameamea.position = $PowerSpawningPoint.position
+			add_child(kameamea)

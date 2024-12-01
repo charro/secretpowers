@@ -1,4 +1,5 @@
 extends Area2D
+class_name Foe
 
 @export var max_velocity: float = 200
 @export var max_life: int = 5
@@ -48,5 +49,8 @@ func check_if_survived():
 		queue_free()
 
 func secret_power(power: SecretPowerChecker.SECRET_POWERS):
-	if power == SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
-		queue_free()
+	match power:
+		SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
+			queue_free()
+		SecretPowerChecker.SECRET_POWERS.KAMEAMEA:
+			queue_free()

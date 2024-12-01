@@ -35,11 +35,8 @@ func get_input():
 		get_tree().call_group("touching_player", "attacked")
 	
 	if action_pressed:
-		var secret_power_triggered = \
-			secret_power_checker.check_if_secret_power_triggered(action_pressed)
-		if secret_power_triggered != null:
-			trigger_secret_power(secret_power_triggered)
-		
+		secret_power_checker.check_if_secret_power_triggered(action_pressed)
+			
 func _on_animation_finished() -> void:
 	active_secret_power = null
 	$AnimatedSprite2D.animation = "idle"
@@ -58,20 +55,22 @@ func stop():
 func move():
 	current_state = STATES.IDLE
 
-func trigger_secret_power(secret_power_id: SecretPowerChecker.SECRET_POWERS):
+func _on_animated_sprite_2d_frame_changed() -> void:
+	# Hit the enemies in each frame
+	if active_secret_power == SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
+		get_tree().call_group("touching_player", "attacked")
+
+
+func _on_secret_power_checker_secret_power_triggered(secret_power_id: SecretPowerChecker.SECRET_POWERS) -> void:
 	active_secret_power = secret_power_id
+	current_state = STATES.SECRET_POWER
 	match secret_power_id:
 		SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
 			megapunch()
 
 func megapunch():
-	print("Animate Megapunch")
 	# Apply multi attack
 	$AnimatedSprite2D.play("megapunch")
 	$PunchSound.play()
-	current_state = STATES.SECRET_POWER
 
-func _on_animated_sprite_2d_frame_changed() -> void:
-	# Hit the enemies in each frame
-	if active_secret_power == SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
-		get_tree().call_group("touching_player", "attacked")
+	

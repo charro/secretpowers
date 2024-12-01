@@ -10,6 +10,8 @@ var is_cooldown_active: bool = false
 var secret_powers_unblocked: int        = 0
 var secret_powers_found: Array[Variant] = []
 
+signal secret_power_triggered(secret_power: SECRET_POWERS)
+
 @onready var secret_powers: Dictionary = {
 	SECRET_POWERS.MEGA_PUNCH: $SecretPowers/FirstSecretPower,
 	SECRET_POWERS.KAMEAMEA: $SecretPowers/SecondSecretPower,
@@ -48,8 +50,6 @@ func new_action_pressed(action: SecretPower.ACTION_KEYS):
 			var secret_power = secret_powers[secret_power_index]
 			if secret_power.matches(current_actions_sequence):
 				power_triggered(secret_power_index)
-				return secret_power_index
-	return null
 
 func power_triggered(secret_power: SECRET_POWERS):
 	if secret_power not in secret_powers_found:
@@ -64,6 +64,7 @@ func power_triggered(secret_power: SECRET_POWERS):
 	accumulated_time_since_last_check = 0
 	$CooldownTimer.start()
 	is_cooldown_active = true
+	secret_power_triggered.emit(secret_power)
 
 func _on_cooldown_timer_timeout() -> void:
 	is_cooldown_active = false

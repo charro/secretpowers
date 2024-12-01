@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://df2k8c4d6qjid"]
+[gd_scene load_steps=9 format=3 uid="uid://df2k8c4d6qjid"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m8662"]
 [ext_resource type="PackedScene" uid="uid://nowb747qdxcw" path="res://player/player.tscn" id="1_vk8qf"]
 [ext_resource type="PackedScene" uid="uid://c5ox76g2j1af4" path="res://foe/foe.tscn" id="2_kqppx"]
+[ext_resource type="PackedScene" uid="uid://cbtymv7qj76gn" path="res://secret_powers/kamehameha.tscn" id="3_16e0g"]
 [ext_resource type="Script" path="res://secret_power_checker.gd" id="3_j86wd"]
 [ext_resource type="Script" path="res://foe_spawn_timer.gd" id="4_8nhan"]
 [ext_resource type="PackedScene" uid="uid://mnucat2y72lb" path="res://secret_powers/secret_power.tscn" id="4_pspov"]
@@ -11,6 +12,7 @@
 [node name="Main" type="Node2D"]
 script = ExtResource("1_m8662")
 foe_scene = ExtResource("2_kqppx")
+kameamea_scene = ExtResource("3_16e0g")
 life = 10
 
 [node name="SecretPowerChecker" type="Node2D" parent="."]
@@ -52,6 +54,11 @@ position = Vector2(586, 281)
 wait_time = 5.0
 one_shot = true
 
+[node name="PowerSpawningPoint" type="Node2D" parent="."]
+position = Vector2(125, 280)
+
+[connection signal="secret_power_triggered" from="SecretPowerChecker" to="." method="_on_secret_power_checker_secret_power_triggered"]
+[connection signal="secret_power_triggered" from="SecretPowerChecker" to="Player" method="_on_secret_power_checker_secret_power_triggered"]
 [connection signal="timeout" from="SecretPowerChecker/CooldownTimer" to="SecretPowerChecker" method="_on_cooldown_timer_timeout"]
 [connection signal="timeout" from="FoeSpawnTimer" to="." method="_on_foe_spawn_timer_timeout"]
 [connection signal="timeout" from="FoeSpawnTimer" to="FoeSpawnTimer" method="_on_timeout"]
