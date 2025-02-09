@@ -2,7 +2,7 @@ extends Node2D
 class_name SecretPowerChecker
 
 const MAX_TIME_FOR_CHECK_POWERS: int = 1 #seconds
-enum SECRET_POWERS { MULTI_PUNCH = 0, KAMEAMEA = 1, MEGA_PUNCH = 2 }
+enum SECRET_POWERS { NONE = -1, MULTI_PUNCH = 0, KAMEAMEA = 1, MEGA_PUNCH = 2 }
 var current_actions_sequence: Array[Variant] = []
 var accumulated_time_since_last_check: float   = 0
 var is_cooldown_active: bool = false

@@ -33,7 +33,7 @@ func get_input():
 
 	if pressed_attack_key:
 		current_state = STATES.ATTACK
-		get_tree().call_group("touching_player", "attacked")
+		get_tree().call_group("touching_player", "attacked", SecretPowerChecker.SECRET_POWERS.NONE)
 		
 	if action_pressed:
 		secret_power_checker.check_if_secret_power_triggered(action_pressed)

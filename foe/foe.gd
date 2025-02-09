@@ -30,8 +30,17 @@ func _process(delta: float) -> void:
 		position.x = position.x - velocity * delta
 	check_if_survived()
 
-func attacked():
-	life = clampi(life - 1, 0, max_life)
+func attacked(power: SecretPowerChecker.SECRET_POWERS):
+	var damage: int = 1
+	match power:
+		SecretPowerChecker.SECRET_POWERS.MULTI_PUNCH:
+			damage = 5
+		SecretPowerChecker.SECRET_POWERS.KAMEAMEA:
+			damage = 10
+		SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
+			damage = 20
+	
+	life = clampi(life - damage, 0, max_life)
 	velocity = clampf(velocity * 0.7, 50, max_velocity)
 	position.x = position.x + 10
 	$AnimationPlayer.play("attacked")
@@ -53,9 +62,9 @@ func check_if_survived():
 func secret_power(power: SecretPowerChecker.SECRET_POWERS):
 	match power:
 		SecretPowerChecker.SECRET_POWERS.MULTI_PUNCH:
-			attacked()
+			attacked(power)
 		SecretPowerChecker.SECRET_POWERS.KAMEAMEA:
-			attacked()
+			attacked(power)
 		SecretPowerChecker.SECRET_POWERS.MEGA_PUNCH:
 			megapunched.emit(self)
 
